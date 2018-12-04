@@ -2,7 +2,7 @@
 # tasks file for roles/omero-runtime
 
 - name: omero python deps | distribution packages
-  become: yes
+  become: true
   yum:
     name: "{{ item }}"
     state: present
