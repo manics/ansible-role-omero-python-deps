@@ -8,6 +8,8 @@ lint:
 platforms:
   - name: omero-py-deps-c7
     image: centos:7
+  - name: omero-py-deps-u1804
+    image: ubuntu:18.04
 provisioner:
   name: ansible
   lint:

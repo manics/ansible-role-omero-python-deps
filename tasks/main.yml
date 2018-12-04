@@ -1,19 +1,36 @@
 ---
 # tasks file for roles/omero-runtime
 
-- name: omero python deps | distribution packages
+- name: omero python deps | distribution packages (centos)
   become: true
   yum:
-    name: "{{ item }}"
+    name:
+      - Cython
+      - numpy
+      - python-jinja2
+      - python-matplotlib
+      - python-numexpr
+      - python-pillow
+      - python-pip
+      - python-tables
+      - PyYAML
+      - scipy
     state: present
-  with_items:
-    - Cython
-    - numpy
-    - python-jinja2
-    - python-matplotlib
-    - python-numexpr
-    - python-pillow
-    - python-pip
-    - python-tables
-    - PyYAML
-    - scipy
+  when: ansible_os_family == 'RedHat'
+
+- name: omero python deps | distribution packages (ubuntu)
+  become: true
+  apt:
+    name:
+      - cython
+      - python-numpy
+      - python-jinja2
+      - python-matplotlib
+      - python-numexpr
+      - python-pillow
+      - python-pip
+      - python-tables
+      - python-yaml
+      - python-scipy
+    state: present
+  when: ansible_os_family == 'Debian'
